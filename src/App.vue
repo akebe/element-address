@@ -17,15 +17,20 @@
           ref="address"
       ></el-address-form>
     </div>
+    <div class="_card">
+      <el-button :size="size" @click="dialog">弹出层地址编辑</el-button>
+    </div>
+    <el-address-dialog ref="dialog"></el-address-dialog>
   </div>
 </template>
 
 <script>
   import ElAddressForm from '../packages/components/ElAddressForm';
+  import ElAddressDialog from '../packages/components/ElAddressDialog';
 
   export default {
     name: 'app',
-    components: {ElAddressForm},
+    components: {ElAddressDialog, ElAddressForm},
     data() {
       return {
         size: 'small',
@@ -67,6 +72,20 @@
           area: '福清市',
         };
       },
+      dialog() {
+        this.$refs.dialog.open({}, {
+          beforeResolve: (data, done) => {
+            setTimeout(() => {
+              done();
+            }, 1000);
+          },
+        }).then(result => {
+          this.$alert(JSON.stringify(result, null, 2), {
+            title: '结果',
+            dangerouslyUseHTMLString: true,
+          });
+        });
+      },
     },
   };
 </script>
@@ -80,6 +99,7 @@
     max-width: 700px;
     border: 1px solid #e9e9e9;
     padding: 15px;
+    margin-bottom: 15px;
   }
 
   ._card-header {
