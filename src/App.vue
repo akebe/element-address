@@ -18,7 +18,8 @@
       ></el-address-form>
     </div>
     <div class="_card">
-      <el-button :size="size" @click="dialog">弹出层地址编辑</el-button>
+      <el-button :size="size" @click="dialogComponent">组件式弹出层地址编辑</el-button>
+      <el-button :size="size" @click="dialog">函数式弹出层地址编辑</el-button>
     </div>
     <el-address-dialog ref="dialog"></el-address-dialog>
   </div>
@@ -26,7 +27,8 @@
 
 <script>
   import ElAddressForm from '../packages/components/ElAddressForm';
-  import ElAddressDialog from '../packages/components/ElAddressDialog';
+  import ElAddressDialog from '../packages/components/address-dialog/ElAddressDialog';
+  import AddressDialog from '../packages/components/address-dialog/address-dialog';
 
   export default {
     name: 'app',
@@ -72,8 +74,22 @@
           area: '福清市',
         };
       },
-      dialog() {
+      dialogComponent() {
         this.$refs.dialog.open({}, {
+          beforeResolve: (data, done) => {
+            setTimeout(() => {
+              done();
+            }, 1000);
+          },
+        }).then(result => {
+          this.$alert(JSON.stringify(result, null, 2), {
+            title: '结果',
+            dangerouslyUseHTMLString: true,
+          });
+        });
+      },
+      dialog() {
+        AddressDialog({}, {
           beforeResolve: (data, done) => {
             setTimeout(() => {
               done();

@@ -32,7 +32,7 @@
 </template>
 <script>
   import {Loading} from 'element-ui';
-  import ElAddressForm from './ElAddressForm';
+  import ElAddressForm from '../ElAddressForm';
 
   const defaultData = {
     name: '',
