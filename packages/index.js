@@ -7,6 +7,7 @@ export {
   ElAreaCascader,
   ElAddressForm,
   ElAddressDialog,
+  AddressDialog
 };
 
 const ElementAddress = {
