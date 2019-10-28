@@ -1,20 +1,24 @@
 {
   "name": "element-address",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.1",
+  "description": "emenent address components",
+  "main": "packages/index.js",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve-document": "vue-cli-service serve",
+    "build-document": "vue-cli-service build",
+    "lint-document": "vue-cli-service lint"
   },
   "dependencies": {
+    "address-parse": "^1.0.7",
     "core-js": "^3.3.2",
+    "element-ui": "^2.12.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.0.0",
     "@vue/cli-plugin-eslint": "^4.0.0",
     "@vue/cli-service": "^4.0.0",
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
@@ -39,8 +43,19 @@
       "autoprefixer": {}
     }
   },
+  "keywords": [
+    "element address",
+    "address",
+    "address parse",
+    "element-address"
+  ],
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "homepage": "https://github.com/akebe/element-address",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:akebe/element-address.git"
+  }
 }
