@@ -22,6 +22,7 @@ const ElementAddress = {
       Vue.component(ElAddressDialog.name, ElAddressDialog);
     }
   },
+  $dialog: AddressDialog,
 };
 
 export default ElementAddress;
