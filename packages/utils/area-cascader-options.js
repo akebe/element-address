@@ -77,9 +77,9 @@ function getAreaCascaderOptions({province_list = {}, city_list = {}, area_list =
 
 const {options, codes} = getAreaCascaderOptions(AREA);
 
+export {getAreaCascaderOptions};
+
 export default {
   options,
   codes,
 };
-
-export {getAreaCascaderOptions};

@@ -1,3 +1,4 @@
+import AddressParse, {Utils, AREA} from 'address-parse';
 import ElAreaCascader from './components/ElAreaCascader';
 import ElAddressForm from './components/ElAddressForm';
 import ElAddressDialog from './components/address-dialog/ElAddressDialog';
@@ -7,7 +8,10 @@ export {
   ElAreaCascader,
   ElAddressForm,
   ElAddressDialog,
-  AddressDialog
+  AddressDialog,
+  AddressParse,
+  Utils,
+  AREA,
 };
 
 const ElementAddress = {
@@ -18,7 +22,6 @@ const ElementAddress = {
       Vue.component(ElAddressDialog.name, ElAddressDialog);
     }
   },
-  AddressDialog,
 };
 
 export default ElementAddress;

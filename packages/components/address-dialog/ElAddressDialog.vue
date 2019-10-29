@@ -31,7 +31,6 @@
   </el-dialog>
 </template>
 <script>
-  import {Loading} from 'element-ui';
   import ElAddressForm from '../ElAddressForm';
 
   const defaultData = {
@@ -135,9 +134,9 @@
         }
       },
       loadingStart() {
-        if (!this.loading) {
+        if (this.$loading && !this.loading) {
           let target = this.$refs.dialog.$el.querySelector('.el-dialog');
-          this.loading = Loading.service({target});
+          this.loading = this.$loading({target});
         }
       },
       loadingClose() {
