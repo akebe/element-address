@@ -26,7 +26,7 @@
 </template>
 
 <script>
-  import ElementAddress from '../lib/element-address.umd.min.js'
+  import ElementAddress from 'element-address'
 
   export default {
     name: 'app',
