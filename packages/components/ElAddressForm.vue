@@ -3,6 +3,7 @@
       ref="form"
       :size="size"
       :model="data"
+      class="el-address_form"
       :rules="mRules"
       :label-width="labelWidth">
     <el-row>
@@ -336,30 +337,3 @@
     },
   };
 </script>
-<style scoped>
-  ._parse {
-    display: flex;
-  }
-
-  ._parse-body {
-    flex: 1;
-  }
-
-  ._parse-action {
-    margin-left: 15px;
-  }
-
-  ._results .el-radio {
-    white-space: normal;
-    display: block;
-    margin-bottom: 10px;
-  }
-
-  ._results >>> .el-radio__label {
-    font-size: 13px
-  }
-
-  ._results >>> .el-collapse-item__header {
-    color: #E6A23C
-  }
-</style>

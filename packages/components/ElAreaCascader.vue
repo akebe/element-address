@@ -4,7 +4,7 @@
       :clearable="clearable"
       :filterable="filterable"
       :options="options"
-      :popper-class="radioHide ? '_radio-hide': ''"
+      :popper-class="radioHide ? 'el-radio_hide': ''"
       :props="mProps"
       :size="size"
       :placeholder="placeholder"
@@ -79,19 +79,3 @@
     methods: {},
   };
 </script>
-<style>
-  ._radio-hide .el-radio__inner {
-    border: 0;
-    background-color: inherit
-  }
-
-  ._radio-hide .el-radio__input.is-checked .el-radio__inner {
-    background: none
-  }
-
-  ._radio-hide .el-radio {
-    height: 100%;
-    width: 150px;
-    position: absolute;
-  }
-</style>

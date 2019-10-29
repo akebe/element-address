@@ -3,6 +3,9 @@ import ElAreaCascader from './components/ElAreaCascader';
 import ElAddressForm from './components/ElAddressForm';
 import ElAddressDialog from './components/address-dialog/ElAddressDialog';
 import AddressDialog from './components/address-dialog/address-dialog';
+import Style from './style';
+
+Style();
 
 export {
   ElAreaCascader,

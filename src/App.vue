@@ -26,13 +26,11 @@
 </template>
 
 <script>
-  import ElAddressForm from '../packages/components/ElAddressForm';
-  import ElAddressDialog from '../packages/components/address-dialog/ElAddressDialog';
-  import AddressDialog from '../packages/components/address-dialog/address-dialog';
+  import ElementAddress from '../lib/element-address.umd.min.js'
 
   export default {
     name: 'app',
-    components: {ElAddressDialog, ElAddressForm},
+    components: {},
     data() {
       return {
         size: 'small',
@@ -89,7 +87,7 @@
         });
       },
       dialog() {
-        AddressDialog({}, {
+        ElementAddress.$dialog({}, {
           beforeResolve: (data, done) => {
             setTimeout(() => {
               done();

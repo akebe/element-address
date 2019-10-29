@@ -1,9 +1,8 @@
 {
   "name": "element-address",
-  "version": "0.1.4",
+  "version": "0.1.8",
   "description": "emenent address components",
   "main": "lib/element-address.umd.min.js",
-  "style": "lib/element-address.css",
   "scripts": {
     "serve-document": "vue-cli-service serve",
     "build-document": "vue-cli-service build",
@@ -13,7 +12,9 @@
   "dependencies": {
     "address-parse": "^1.0.7",
     "core-js": "^3.3.2",
-    "element-address": "^0.1.4",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "element-address": "^0.1.8",
     "element-ui": "^2.12.0",
     "vue": "^2.6.10"
   },
