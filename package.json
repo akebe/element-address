@@ -1,6 +1,6 @@
 {
   "name": "element-address",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "emenent address components",
   "main": "lib/element-address.umd.min.js",
   "scripts": {
@@ -10,11 +10,11 @@
     "build": "vue-cli-service build --target lib --dest lib packages/index.js"
   },
   "dependencies": {
-    "address-parse": "^1.0.7",
+    "address-parse": "^1.0.8",
     "core-js": "^3.3.2",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
-    "element-address": "^0.1.9",
+    "element-address": "^0.1.10",
     "element-ui": "^2.12.0",
     "vue": "^2.6.10"
   },
@@ -61,5 +61,6 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:akebe/element-address.git"
-  }
+  },
+  "license": "MIT"
 }
