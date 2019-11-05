@@ -1,6 +1,6 @@
 {
   "name": "element-address",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "emenent address components",
   "main": "lib/element-address.umd.min.js",
   "scripts": {

@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <div class="_card">
+      <el-area-cascader style="width:400px"></el-area-cascader>
+    </div>
+    <div class="_card">
       <div class="_card-header">
         <div class="_card-label">
           地址解析
@@ -26,7 +29,7 @@
 </template>
 
 <script>
-  import ElementAddress from 'element-address'
+  import ElementAddress from 'element-address';
 
   export default {
     name: 'app',

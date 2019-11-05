@@ -7,6 +7,7 @@
       :popper-class="radioHide ? 'el-radio_hide': ''"
       :props="mProps"
       :size="size"
+      :disabled="disabled"
       :placeholder="placeholder"
   >
   </el-cascader>
@@ -37,6 +38,7 @@
         type: Boolean,
         default: true,
       },
+      disabled: Boolean,
       props: Object,
       placeholder: String,
     },
@@ -72,7 +74,7 @@
               list = item && item.children ? item.children : [];
             }
           }
-          this.$emit('change', result, codes);
+          this.$emit('change', codes[codes.length - 1], result, codes);
         },
       },
     },

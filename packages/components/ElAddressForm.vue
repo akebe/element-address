@@ -290,10 +290,10 @@
         this.parse.results = [];
         this.parse.index = 0;
       },
-      clearValidate() {
-        this.$refs.form.clearValidate();
+      clearValidate(props) {
+        this.$refs.form.clearValidate(props);
       },
-      areaChange([province, city, area]) {
+      areaChange(code, [province, city, area]) {
         this.data.province = province ? province.label : '';
         this.data.city = city ? city.label : '';
         this.data.area = area ? area.label : '';
