@@ -1,6 +1,6 @@
 {
   "name": "element-address",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "emenent address components",
   "main": "lib/element-address.umd.min.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "core-js": "^3.3.2",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
-    "element-address": "^0.1.12",
+    "element-address": "^0.1.13",
     "element-ui": "^2.12.0",
     "vue": "^2.6.10"
   },
