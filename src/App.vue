@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import ElementAddress from 'element-address';
+  import {ElementAddress} from './main.js';
 
   export default {
     name: 'app',
@@ -49,6 +49,7 @@
           city: '',
           area: '',
         },
+        testData: {},
       };
     },
     methods: {
@@ -90,13 +91,14 @@
         });
       },
       dialog() {
-        ElementAddress.$dialog({}, {
+        ElementAddress.$dialog(this.testData, {
           beforeResolve: (data, done) => {
             setTimeout(() => {
               done();
             }, 1000);
           },
         }).then(result => {
+          this.testData = {};
           this.$alert(JSON.stringify(result, null, 2), {
             title: '结果',
             dangerouslyUseHTMLString: true,

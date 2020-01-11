@@ -90,13 +90,18 @@
     computed: {},
     methods: {
       open(data = {}, options = {}) {
-        this.mData = Object.assign({}, defaultData, data);
+        if (this.baseData !== data) {
+          this.$refs.form && this.$refs.form.clear();
+          this.mData = Object.assign({}, defaultData, data);
+          this.baseData = data;
+        }
         this.mOptions = Object.assign({}, defaultOptions, options);
-        this.visible = true;
+        this.$nextTick(() => {
+          this.visible = true;
+        });
         return new Promise((resolve => {
           this.resolve = resolve;
         }));
-
       },
       confirm() {
         this.$refs.form.validate(valid => {
@@ -123,12 +128,11 @@
         });
       },
       closed() {
-        this.$refs.form.clear();
         this.loadingClose();
       },
       beforeClose(done) {
         if (this.mOptions.beforeClose) {
-          this.mOptions.beforeClose(this.mData, done);
+          this.mOptions.beforeClose({...this.mData}, done);
         } else {
           done();
         }
