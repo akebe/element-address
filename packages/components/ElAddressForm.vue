@@ -227,7 +227,7 @@
               validator: (rule, value, callback) => {
                 if (!value) {
                   callback();
-                } else if (/^[1][0-9]{10}|^86-[1][0-9]{10}$/.test(value)) {
+                } else if (/^[1][0-9]{10}$|^86-[1][0-9]{10}$/.test(value)) {
                   callback();
                 } else {
                   callback(new Error('请留空或输入正确的手机号码'));
@@ -246,7 +246,7 @@
                   } else {
                     callback();
                   }
-                } else if (/^[1][0-9]{10}|^86-[1][0-9]{10}$/.test(value)) {
+                } else if (/^[1][0-9]{10}$|^86-[1][0-9]{10}$/.test(value)) {
                   callback();
                 } else {
                   callback(new Error('请留空或输入正确的手机号码'));

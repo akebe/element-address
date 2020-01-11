@@ -6,6 +6,10 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import ElementAddress from 'element-address';
 
+//import ElementAddress from '../packages/index.js';
+
+//import ElementAddress from '../lib/element-address.umd.js';
+
 Vue.use(ElementUI);
 
 Vue.use(ElementAddress, {useAll: true});
