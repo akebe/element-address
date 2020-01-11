@@ -72,12 +72,14 @@ Vue.use(ElementAddress);
 | --- | ---- | --- | 
 | parse | 地址解析后触发 | (ary 解析结果列表 ) | 
  
-### ElementAddress.$dialog
+### ElementAddress.$dialog(data, options)
 弹层地址表单组件  
 ![ElAddressDialog](https://www.xiangumall.com/images/github/ElAddressDialog.png)
-组件式调用使用唯一入口`this.$refs.dialog.open(options)`  
-与全局调用配置一致`ElementAddress.$dialog(options)`  
-#### Options
+组件式调用使用唯一入口`this.$refs.dialog.open(data, options)`  
+与全局调用配置一致`ElementAddress.$dialog(data, options)`  
+#### data
+绑定表单对象 
+#### options
 支持所有`ElAddressForm`的`Attributes`
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |

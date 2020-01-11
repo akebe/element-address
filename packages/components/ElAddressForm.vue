@@ -225,10 +225,9 @@
           mobile: [
             {
               validator: (rule, value, callback) => {
-                Utils.Reg.mobile.lastIndex = 0;
                 if (!value) {
                   callback();
-                } else if (Utils.Reg.mobile.test(value)) {
+                } else if (/^[1][0-9]{10}|^86-[1][0-9]{10}$/.test(value)) {
                   callback();
                 } else {
                   callback(new Error('请留空或输入正确的手机号码'));
@@ -241,14 +240,13 @@
           mobile:
             {
               validator: (rule, value, callback) => {
-                Utils.Reg.mobile.lastIndex = 0;
                 if (!value) {
                   if (!this.data.phone) {
                     callback(new Error('电话号码与手机至少要填写一项'));
                   } else {
                     callback();
                   }
-                } else if (Utils.Reg.mobile.test(value)) {
+                } else if (/^[1][0-9]{10}|^86-[1][0-9]{10}$/.test(value)) {
                   callback();
                 } else {
                   callback(new Error('请留空或输入正确的手机号码'));
@@ -322,7 +320,7 @@
         });
       },
       selectResultIndex(index) {
-        const result =   this.parse.results[index];
+        const result = this.parse.results[index];
         this.assignedBefore && this.assignedBefore(result);
         KEYS.forEach(key => {
           this.data[key] = result[key];
