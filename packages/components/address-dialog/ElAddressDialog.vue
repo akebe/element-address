@@ -8,14 +8,21 @@
       @closed="closed"
       append-to-body
       ref="dialog"
+      class="el-address-dialog"
   >
     <el-address-form
         :data="mData"
         v-bind="mOptions"
         ref="form"
-    >
-    </el-address-form>
+    />
     <div slot="footer">
+      <el-button
+          v-if="mOptions.resetButton"
+          style="border-style: dashed"
+          :size="mOptions.size"
+          @click="reset()">
+        {{ mOptions.resetButtonText}}
+      </el-button>
       <el-button
           :size="mOptions.size"
           @click="cancel()">
@@ -59,8 +66,10 @@
     assignedBefore: undefined,
     // 当前组件配置
     title: '地址编辑',
-    cancelButtonText: '取 消',
+    cancelButtonText: '关 闭',
     confirmButtonText: '确 定',
+    resetButtonText: '清 空',
+    resetButton: false,
     beforeResolve: undefined, // 确认前回调 (data, done) 需要触发done才正式关闭 done(false) 终止
     beforeClose: undefined,   // 关闭前回调 (data, done) 需要触发done才正式关闭
     width: '700px',
@@ -111,12 +120,12 @@
               this.mOptions.beforeResolve(this.mData, state => {
                 this.loadingClose();
                 if (state !== false) {
-                  this.resolve && this.resolve({...this.mData});
+                  this.resolve({...this.mData});
                   this.visible = false;
                 }
               });
             } else {
-              this.resolve && this.resolve({...this.mData});
+              this.resolve({...this.mData});
               this.visible = false;
             }
           }
@@ -127,8 +136,12 @@
           this.visible = false;
         });
       },
+      reset() {
+        this.$refs.form.clear();
+      },
       closed() {
         this.loadingClose();
+        this.$emit('closed');
       },
       beforeClose(done) {
         if (this.mOptions.beforeClose) {
@@ -156,3 +169,12 @@
     },
   };
 </script>
+<style>
+  .el-address-dialog .el-dialog__body {
+    padding: 10px 20px 0;
+  }
+
+  .el-address-dialog_footer {
+    display: flex;
+  }
+</style>
