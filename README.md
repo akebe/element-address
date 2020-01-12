@@ -27,7 +27,7 @@ Vue.use(ElementAddress);
 
 ### ElAreaCascader
 地址地区级联选择器
-![ElAreaCascader](https://www.xiangumall.com/images/github/ElAreaCascader.png)
+![ElAreaCascader](https://raw.githubusercontent.com/akebe/element-address/master/src/img/ElAreaCascader.png)
 #### Attributes
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | ---- | --- | ---- | ----- |
@@ -49,7 +49,7 @@ Vue.use(ElementAddress);
 
 ### ElAddressForm  
 带解析功能地址表单  
-![ElAddressForm](https://www.xiangumall.com/images/github/ElAddressForm.png)
+![ElAddressForm](https://raw.githubusercontent.com/akebe/element-address/master/src/img/ElAddressForm.png)
 #### Attributes  
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | ---- | --- | ---- | ----- |
@@ -76,7 +76,7 @@ Vue.use(ElementAddress);
  
 ### ElementAddress.$dialog(data, options)
 弹层地址表单组件  
-![ElAddressDialog](https://www.xiangumall.com/images/github/ElAddressDialog.png)
+![ElAddressDialog](https://raw.githubusercontent.com/akebe/element-address/master/src/img/ElAddressDialog.png)
 组件式调用使用唯一入口`this.$refs.dialog.open(data, options)`  
 与全局调用配置一致`ElementAddress.$dialog(data, options)`  
 #### data
