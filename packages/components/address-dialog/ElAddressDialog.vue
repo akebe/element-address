@@ -132,7 +132,7 @@
           }
         } else {
           this.mData = Object.assign({}, defaultData, data);
-          this.$refs.form && this.$refs.form.clear();
+          this.$refs.form && this.$nextTick(() => this.$refs.form.clearValidate());
         }
         this.$nextTick(() => {
           this.visible = true;
