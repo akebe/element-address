@@ -1,6 +1,8 @@
 # element-address
 基于 [address-parse](https://github.com/akebe/address-parse) 通过 [element-ui](https://github.com/ElemeFE/element) 实现的即开即用地址类组件库
 
+📄组件效果 [github](https://akebe.github.io/element-address/) [gitee](https://asseek.gitee.io/element-address/) 
+
 ### Install
 ````
 npm install element-address --save
