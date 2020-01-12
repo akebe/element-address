@@ -1,39 +1,58 @@
 import Vue from 'vue';
 import ElAddressDialog from './ElAddressDialog';
 
-let calls = [];
+const callbacks = [];
 
-let vm = null;
+let vm = null, init = false, current = null;
 
-/**
- * 函数式调用 ElAddressDialog
- * @param data    地址数据对象
- * @param options 配置参数
- * @returns {Promise<any>}
- * @constructor
- */
-function AddressDialog(data, options) {
-  return new Promise(resolve => {
-    if (!vm) {
-      calls.push([data, options, resolve]);
-      const el = document.createElement('DIV');
-      document.body.appendChild(el);
-      new Vue({
-        render: h => h(ElAddressDialog),
-        mounted() {
-          this.$nextTick(() => {
-            vm = this.$children[0];
-            for (let [data, options, resolve] of calls) {
-              vm.open(data, options).then(resolve);
-            }
-            calls = [];
+function queueHandle() {
+  if (current) {
+    callbacks.splice(0, 1);
+    current = null;
+  }
+  if (callbacks.length) {
+    current = callbacks[0];
+    open();
+  }
+}
+
+function open() {
+  if (current) {
+    const {data, options, resolve} = current;
+    vm.open(data, options).then(resolve);
+  }
+}
+
+function vmCreate() {
+  if (!init) {
+    init = true;
+    const el = document.createElement('div');
+    document.body.appendChild(el);
+    new Vue({
+      render: h => h(ElAddressDialog),
+      mounted() {
+        this.$nextTick(() => {
+          vm = this.$children[0];
+          vm.$on('closed', () => {
+            queueHandle();
           });
-        },
-      }).$mount(el);
-    } else {
-      vm.open(data, options).then(resolve);
+          queueHandle();
+        });
+      },
+    }).$mount(el);
+  }
+}
+
+function AddressDialog(data, options) {
+  return new Promise((resolve => {
+    callbacks.push({data, options, resolve});
+    if (!init) {
+      vmCreate();
     }
-  });
+    if (vm && !current) {
+      queueHandle();
+    }
+  }));
 }
 
 export default AddressDialog;
