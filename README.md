@@ -81,7 +81,7 @@ Vue.use(ElementAddress);
 组件式调用使用唯一入口`this.$refs.dialog.open(data, options)`  
 与全局调用配置一致`ElementAddress.$dialog(data, options)`  
 #### data
-绑定表单对象 
+表单对象 
 #### options
 支持所有`ElAddressForm`的`Attributes`
 
@@ -96,6 +96,7 @@ Vue.use(ElementAddress);
 | beforeClose | 关闭前回调 | Function | -- | (data, done) 需要触发done才正式关闭 |
 | width | 弹层宽度 | String | -- | '700px' |
 | closeOnClickModal | 是否点击遮罩关闭 | Boolean | -- | false |
+| bindData | 是否直接绑定表单对象 | Boolean | -- | false |
 ####tips
 可通过`ElementAddress.$dialog.$vm`访问到全局实例
 ### LICENSE

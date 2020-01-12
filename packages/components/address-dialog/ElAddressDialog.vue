@@ -13,6 +13,7 @@
     <el-address-form
         :data="mData"
         v-bind="mOptions"
+        :parse="parse"
         ref="form">
       <slot/>
     </el-address-form>
@@ -40,6 +41,7 @@
 </template>
 <script>
   import ElAddressForm from '../ElAddressForm';
+  import Vue from 'vue';
 
   const defaultData = {
     name: '',
@@ -75,7 +77,10 @@
     beforeClose: undefined,   // 关闭前回调 (data, done) 需要触发done才正式关闭
     width: '700px',
     closeOnClickModal: false,
+    bindData: false,          // 直接将修改绑定在data参数上
   };
+
+  const keys = Object.keys(defaultData);
 
   export default {
     name: 'ElAddressDialog',
@@ -97,15 +102,38 @@
         resolve: null,
       };
     },
-    computed: {},
+    computed: {
+      parse() {
+        return this.mData.__parse__ || undefined;
+      },
+    },
     methods: {
       open(data = {}, options = {}) {
-        if (this.baseData !== data) {
-          this.$refs.form && this.$refs.form.clear();
-          this.mData = Object.assign({}, defaultData, data);
-          this.baseData = data;
-        }
         this.mOptions = Object.assign({}, defaultOptions, options);
+        if (this.mOptions.bindData) {
+          if (this.mData !== data) {
+            for (const key of keys) {
+              if (typeof data[key] === 'undefined') this.$set(data, key, defaultData[key]);
+            }
+            if (typeof data.__parse__ === 'undefined') {
+              Object.defineProperties(data, {
+                __parse__: Vue.observable({
+                  value: {
+                    address: '',
+                    results: [],
+                    index: 0,
+                    actives: [],
+                  },
+                }),
+              });
+            }
+            this.mData = data;
+            this.$refs.form && this.$nextTick(() => this.$refs.form.clearValidate());
+          }
+        } else {
+          this.mData = Object.assign({}, defaultData, data);
+          this.$refs.form && this.$refs.form.clear();
+        }
         this.$nextTick(() => {
           this.visible = true;
         });

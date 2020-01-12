@@ -24,6 +24,16 @@
       <el-button :size="size" @click="dialogComponent">组件式弹出层地址编辑</el-button>
       <el-button :size="size" @click="dialog">函数式弹出层地址编辑</el-button>
     </div>
+    <div class="_card">
+      <p>
+        <code>ElAddressDialog</code>默认将<code>data</code>参数解耦，可以通过配置<code>options.bindData = true</code>让对象直接绑定，实现多个弹层间数据各自缓存
+      </p>
+      <p>
+        <el-checkbox v-model="bindData">绑定</el-checkbox>
+      </p>
+      <el-button :size="size" @click="dialog1">弹出层1</el-button>
+      <el-button :size="size" @click="dialog2">弹出层2</el-button>
+    </div>
     <el-address-dialog ref="dialog"></el-address-dialog>
   </div>
 </template>
@@ -50,6 +60,9 @@
           area: '',
         },
         testData: {},
+        testData1: {},
+        testData2: {},
+        bindData: true,
       };
     },
     methods: {
@@ -106,6 +119,30 @@
           });
         });
       },
+      dialog1() {
+        ElementAddress.$dialog(this.testData1, {
+          bindData: this.bindData,
+          resetButton: true,
+        }).then(result => {
+          this.testData1 = {};
+          this.$alert(JSON.stringify(result, null, 2), {
+            title: '结果1',
+            dangerouslyUseHTMLString: true,
+          });
+        });
+      },
+      dialog2() {
+        ElementAddress.$dialog(this.testData2, {
+          bindData: this.bindData,
+          resetButton: true,
+        }).then(result => {
+          this.testData2 = {};
+          this.$alert(JSON.stringify(result, null, 2), {
+            title: '结果2',
+            dangerouslyUseHTMLString: true,
+          });
+        });
+      },
     },
   };
 </script>
@@ -120,6 +157,9 @@
     border: 1px solid #e9e9e9;
     padding: 15px;
     margin-bottom: 15px;
+    font-size: 14px;
+    color: #5e6d82;
+    line-height: 1.5em;
   }
 
   ._card-header {
@@ -130,7 +170,15 @@
     flex: 1;
   }
 
-  ._card-action {
+  ._card p {
+    margin-bottom: 10px;
+  }
 
+  code {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
   }
 </style>

@@ -167,6 +167,15 @@
         type: Boolean,
         default: true,
       },
+      parse: {
+        type: Object,
+        default: () => ({
+          address: '',
+          results: [],
+          index: 0,
+          actives: [],
+        }),
+      },
     },
     computed: {
       mLabels() {
@@ -210,12 +219,6 @@
     },
     data() {
       return {
-        parse: {
-          address: '',
-          results: [],
-          index: 0,
-          actives: [],
-        },
         Rules: {
           details: [
             {required: true, message: '请输入详细地址!', trigger: 'change'},
