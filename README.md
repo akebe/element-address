@@ -55,7 +55,7 @@ Vue.use(ElementAddress);
 | label-width | 表单域标签的的宽度 | String | -- | 80px |
 | labels | 标签文本配置项 | Object | -- | {"name":"姓名","mobile":"手机","phone":"电话","code":"地区","details":"地址","company":"单位","zip_code":"邮编","parse":"解 析"} |
 | area-props | 地区级联组件配置项| Object | -- | -- |
-| placeholders | 占位文本配置项 | Object | -- | {"name":"","mobile":"","phone":"","details":"","company":"","zip_code":"","code":"省 市 区","parse":"此处地址执行解析后会被智能识别"} |
+| placeholders | 占位文本配置项 | Object | -- | {"name":"","mobile":"","phone":"","details":"请输入详细地址","company":"","zip_code":"","code":"省 市 区","parse":"此处地址执行解析后会被智能识别"} |
 | data | 绑定表单对象 | Object | -- | {"name":"","mobile":"","phone":"","code":"","details":"","company":"","zip_code":"","province":"","city":"","area":""} |
 | rules | 表单验证对象 | Object | -- | -- |
 | rules-mobile-either | 是否启用mobile跟phone二选一规则 | Boolean | -- | false |
@@ -87,6 +87,8 @@ Vue.use(ElementAddress);
 | title | 弹层标题 | String | -- | '地址编辑' |
 | cancelButtonText | 取消按钮文本 | String | -- | '取 消' |
 | confirmButtonText | 确定按钮文本 | String | -- | '确 定' |
+| resetButtonText | 清空按钮文本 | String | -- | '清 空' |
+| resetButton | 是否显示清空按钮 | Boolean | -- | false |
 | beforeResolve | 确认前回调 | Function | -- | (data, done) 需要触发done才正式关闭 done(false) 终止 |
 | beforeClose | 关闭前回调 | Function | -- | (data, done) 需要触发done才正式关闭 |
 | width | 弹层宽度 | String | -- | '700px' |

@@ -97,6 +97,7 @@
               done();
             }, 1000);
           },
+          resetButton: true,
         }).then(result => {
           this.testData = {};
           this.$alert(JSON.stringify(result, null, 2), {
