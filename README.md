@@ -96,6 +96,7 @@ Vue.use(ElementAddress);
 | beforeClose | 关闭前回调 | Function | -- | (data, done) 需要触发done才正式关闭 |
 | width | 弹层宽度 | String | -- | '700px' |
 | closeOnClickModal | 是否点击遮罩关闭 | Boolean | -- | false |
-
+####tips
+可通过`ElementAddress.$dialog.$vm`访问到全局实例
 ### LICENSE
 [MIT](https://en.wikipedia.org/wiki/MIT_License)
