@@ -37,6 +37,7 @@ function vmCreate() {
             queueHandle();
           });
           queueHandle();
+          AddressDialog.$vm = vm;
         });
       },
     }).$mount(el);
