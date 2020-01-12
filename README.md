@@ -76,7 +76,8 @@ Vue.use(ElementAddress);
  
 ### ElementAddress.$dialog(data, options)
 弹层地址表单组件  
-![ElAddressDialog](https://raw.githubusercontent.com/akebe/element-address/master/src/img/ElAddressDialog.png)
+![ElAddressDialog](https://raw.githubusercontent.com/akebe/element-address/master/src/img/ElAddressDialog.png)  
+
 组件式调用使用唯一入口`this.$refs.dialog.open(data, options)`  
 与全局调用配置一致`ElementAddress.$dialog(data, options)`  
 #### data

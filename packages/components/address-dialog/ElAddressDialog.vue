@@ -13,26 +13,27 @@
     <el-address-form
         :data="mData"
         v-bind="mOptions"
-        ref="form"
-    />
+        ref="form">
+      <slot/>
+    </el-address-form>
     <div slot="footer">
       <el-button
           v-if="mOptions.resetButton"
           style="border-style: dashed"
           :size="mOptions.size"
           @click="reset()">
-        {{ mOptions.resetButtonText}}
+        {{ mOptions.resetButtonText }}
       </el-button>
       <el-button
           :size="mOptions.size"
           @click="cancel()">
-        {{ mOptions.cancelButtonText}}
+        {{ mOptions.cancelButtonText }}
       </el-button>
       <el-button
           :size="mOptions.size"
           type="primary"
           @click="confirm()">
-        {{ mOptions.confirmButtonText}}
+        {{ mOptions.confirmButtonText }}
       </el-button>
     </div>
   </el-dialog>
@@ -163,18 +164,10 @@
         }
       },
     },
-    created() {
-    },
-    mounted() {
-    },
   };
 </script>
 <style>
   .el-address-dialog .el-dialog__body {
     padding: 10px 20px 0;
-  }
-
-  .el-address-dialog_footer {
-    display: flex;
   }
 </style>
