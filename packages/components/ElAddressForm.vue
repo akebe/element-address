@@ -105,6 +105,7 @@
         </el-collapse-item>
       </el-collapse>
     </el-form-item>
+    <slot/>
   </el-form>
 </template>
 <script>
@@ -186,7 +187,7 @@
           name: '',
           mobile: '',
           phone: '',
-          details: '',
+          details: '请输入详细地址',
           company: '',
           zip_code: '',
           code: '省 市 区',
@@ -326,12 +327,6 @@
           this.data[key] = result[key];
         });
       },
-    },
-    created() {
-
-    },
-    mounted() {
-
     },
   };
 </script>
