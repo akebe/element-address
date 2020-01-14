@@ -68,6 +68,7 @@
           :placeholder="mPlaceholders.details">
       </el-input>
     </el-form-item>
+    <slot/>
     <div class="_parse">
       <div class="_parse-body">
         <el-form-item>
@@ -105,7 +106,6 @@
         </el-collapse-item>
       </el-collapse>
     </el-form-item>
-    <slot/>
   </el-form>
 </template>
 <script>
