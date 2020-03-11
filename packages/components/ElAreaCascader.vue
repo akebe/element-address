@@ -1,16 +1,15 @@
 <template>
   <el-cascader
-      v-model="mValues"
-      :clearable="clearable"
-      :filterable="filterable"
-      :options="options"
-      :popper-class="radioHide ? 'el-radio_hide': ''"
-      :props="mProps"
-      :size="size"
-      :disabled="disabled"
-      :placeholder="placeholder"
-  >
-  </el-cascader>
+    v-model="mValues"
+    :clearable="clearable"
+    :filterable="filterable"
+    :options="options"
+    :popper-class="radioHide ? 'el-radio_hide': ''"
+    :props="mProps"
+    :size="size"
+    :disabled="disabled"
+    :placeholder="placeholder"
+  />
 </template>
 <script>
   import AreaCascader from '../utils/area-cascader-options';
