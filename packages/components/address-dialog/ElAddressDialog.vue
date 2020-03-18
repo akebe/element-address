@@ -1,39 +1,43 @@
 <template>
   <el-dialog
-      :title="mOptions.title"
-      :visible.sync="visible"
-      :width="mOptions.width"
-      :before-close="beforeClose"
-      :close-on-click-modal="mOptions.closeOnClickModal"
-      @closed="closed"
-      append-to-body
-      ref="dialog"
-      class="el-address-dialog"
+    append-to-body
+    ref="dialog"
+    class="el-address-dialog"
+    :title="mOptions.title"
+    :visible.sync="visible"
+    :width="mOptions.width"
+    :before-close="beforeClose"
+    :close-on-click-modal="mOptions.closeOnClickModal"
+    @closed="closed"
   >
     <el-address-form
-        :data="mData"
-        v-bind="mOptions"
-        :parse="parse"
-        ref="form">
+      v-bind="mOptions"
+      ref="form"
+      :data="mData"
+      :parse="parse"
+    >
       <slot/>
     </el-address-form>
     <div slot="footer">
       <el-button
-          v-if="mOptions.resetButton"
-          style="border-style: dashed"
-          :size="mOptions.size"
-          @click="reset()">
+        v-if="mOptions.resetButton"
+        style="border-style: dashed"
+        :size="mOptions.size"
+        @click="reset()"
+      >
         {{ mOptions.resetButtonText }}
       </el-button>
       <el-button
-          :size="mOptions.size"
-          @click="cancel()">
+        :size="mOptions.size"
+        @click="cancel()"
+      >
         {{ mOptions.cancelButtonText }}
       </el-button>
       <el-button
-          :size="mOptions.size"
-          type="primary"
-          @click="confirm()">
+        :size="mOptions.size"
+        type="primary"
+        @click="confirm()"
+      >
         {{ mOptions.confirmButtonText }}
       </el-button>
     </div>

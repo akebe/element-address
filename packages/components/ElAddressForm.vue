@@ -1,18 +1,19 @@
 <template>
   <el-form
-      ref="form"
-      :size="size"
-      :model="data"
-      class="el-address_form"
-      :rules="mRules"
-      :label-width="labelWidth">
+    ref="form"
+    class="el-address_form"
+    :size="size"
+    :model="data"
+    :rules="mRules"
+    :label-width="labelWidth"
+  >
     <el-row>
       <el-col :span="12">
         <el-form-item :label="mLabels.name" prop="name">
           <el-input
-              v-model="data.name"
-              :placeholder="mPlaceholders.name">
-          </el-input>
+            v-model="data.name"
+            :placeholder="mPlaceholders.name"
+          />
         </el-form-item>
       </el-col>
     </el-row>
@@ -20,17 +21,17 @@
       <el-col :span="12">
         <el-form-item :label="mLabels.mobile" prop="mobile">
           <el-input
-              v-model.trim="data.mobile"
-              :placeholder="mPlaceholders.mobile">
-          </el-input>
+            v-model.trim="data.mobile"
+            :placeholder="mPlaceholders.mobile"
+          />
         </el-form-item>
       </el-col>
       <el-col :span="12">
         <el-form-item :label="mLabels.phone" prop="phone">
           <el-input
-              v-model="data.phone"
-              :placeholder="mPlaceholders.phone">
-          </el-input>
+            v-model="data.phone"
+            :placeholder="mPlaceholders.phone"
+          />
         </el-form-item>
       </el-col>
     </el-row>
@@ -38,47 +39,49 @@
       <el-col :span="12">
         <el-form-item :label="mLabels.company" prop="company">
           <el-input
-              v-model="data.company"
-              :placeholder="mPlaceholders.company">
-          </el-input>
+            v-model="data.company"
+            :placeholder="mPlaceholders.company"
+          />
         </el-form-item>
       </el-col>
       <el-col :span="12">
         <el-form-item :label="mLabels.zip_code" prop="zip_code">
           <el-input
-              v-model="data.zip_code"
-              :placeholder="mPlaceholders.zip_code">
-          </el-input>
+            v-model="data.zip_code"
+            :placeholder="mPlaceholders.zip_code"
+          />
         </el-form-item>
       </el-col>
     </el-row>
     <el-form-item :label="mLabels.code" prop="code">
       <el-area-cascader
-          style="width:400px"
-          :props="areaProps"
-          v-model="data.code"
-          @change="areaChange"
-          :placeholder="mPlaceholders.code"
-      >
-      </el-area-cascader>
+        v-model="data.code"
+        style="width:400px"
+        :props="areaProps"
+        :placeholder="mPlaceholders.code"
+        @change="areaChange"
+      />
     </el-form-item>
     <el-form-item :label="mLabels.details" prop="details">
       <el-input
-          v-model="data.details"
-          :placeholder="mPlaceholders.details">
-      </el-input>
+        v-model="data.details"
+        type="textarea"
+        :autosize="{ minRows: 1 }"
+        :placeholder="mPlaceholders.details"
+      />
     </el-form-item>
     <slot/>
     <div class="_parse">
       <div class="_parse-body">
         <el-form-item>
           <el-input
-              type="textarea"
-              @paste.native="addressParse"
-              :rows="3"
-              :placeholder="mPlaceholders.parse"
-              v-model="parse.address">
-          </el-input>
+            v-model="parse.address"
+            type="textarea"
+            ref="parse"
+            :autosize="{ minRows: 2 }"
+            :placeholder="mPlaceholders.parse"
+            @paste.native="addressParse"
+          />
         </el-form-item>
       </div>
       <div class="_parse-action">
@@ -86,19 +89,19 @@
       </div>
     </div>
     <el-form-item
-        v-if="parseSelect && parse.results.length > 1"
+      v-if="parseSelect && parse.results.length > 1"
     >
       <el-collapse
-          v-model="parse.actives"
-          class="_results">
+        v-model="parse.actives"
+        class="_results">
         <el-collapse-item title="解析出多个地址，如当前数据不对，请展开选择" name="1">
           <el-radio-group
-              v-model="parse.index"
-              @change="selectResultIndex">
+            v-model="parse.index"
+            @change="selectResultIndex">
             <el-radio
-                v-for="(result, index) in parse.results"
-                :key="`${result.code}${index}`"
-                :label="index">
+              v-for="(result, index) in parse.results"
+              :key="`${result.code}${index}`"
+              :label="index">
               {{ `${result.name}，${result.mobile}，${result.province} ${result.city} ${result.area}
               ${result.details}，${result.zip_code}` }}
             </el-radio>
