@@ -84,6 +84,7 @@
       handleCheckChange(checked, item) {
         let value = this.value;
         let data = value.find(v => v.code === this.data.code);
+        const isCheckedAll = data && !data.children.length;
         if (!data) {
           data = {
             code: this.data.code,
@@ -94,8 +95,12 @@
         data.children = data.children.filter(v => v.code !== item.code);
         if (checked) {
           data.children.push({code: item.code});
-        } else if (!data.children.length) {
-          value = value.filter(v => v.code !== this.data.code);
+        } else {
+          if (isCheckedAll) {
+            data.children = this.data.children.filter(v => v.code !== item.code).map(v => ({code: v.code}));
+          } else if (!data.children.length) {
+            value = value.filter(v => v.code !== this.data.code);
+          }
         }
         this.$emit('input', value);
       },
