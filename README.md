@@ -115,16 +115,19 @@ areaDialog() {
   });
 },
 ```
+可以通过配置项`level`设置等级，默认是2  
+`this.$refs.area.open(this.areaValue, {level: 1})`  
+1省 2市 3区县【暂无】  
 参数及结果是一个数组
 ```
 [
   {
     code: '320000',     // 选中的省份编码
-    children: [],       // children是空数组表示当前省份全部选中
+    children: [],       // children是空数组表示当前省份全部选中 level: 2
   },
   {
     code: '350000',     // 选中的省份编码
-    children: [         // children非空，值是选中的城市编码
+    children: [         // children非空，值是选中的城市编码    level: 2
       {code: '350100'}, 
     ],
   },
@@ -133,6 +136,32 @@ areaDialog() {
 此组件需要引入样式文件
 ```
 import 'element-address/lib/index.css';
+```
+你可以参考下面这个函数展示选择的结果
+```
+import {AREA} from 'element-address';
+
+/**
+ * ElAreaDialog result to Label
+ * @return {string}
+ */
+function AreasLabel(areas, defaultLabel = '') {
+  const ary = [];
+  for (const province of areas) {
+    if (AREA.province_list[province.code]) {
+      if (!province.children || !province.children.length) {
+        ary.push(AREA.province_list[province.code]);
+      } else {
+        for (const city of province.children) {
+          if (AREA.city_list[city.code]) {
+            ary.push(AREA.city_list[city.code]);
+          }
+        }
+      }
+    }
+  }
+  return ary.length ?  ary.join('、') : defaultLabel;
+}
 ```
 
 ### LICENSE

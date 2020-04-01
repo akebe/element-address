@@ -35,7 +35,10 @@
       <el-button :size="size" @click="dialog2">弹出层2</el-button>
     </div>
     <div class="_card">
+      <div style="margin-bottom: 10px">当前选择：{{ areasLabel }}</div>
       <el-button :size="size" @click="areaDialog">地区选择</el-button>
+      <span style="margin:0 10px">地区级数</span>
+      <el-input-number v-model="areaLevel" :size="size" :min="1" :max="2"/>
       <el-checkbox v-model="areaDisabled" style="margin-left: 10px">禁用状态</el-checkbox>
     </div>
     <el-address-dialog ref="dialog"></el-address-dialog>
@@ -48,10 +51,38 @@
 
 <script>
   import {ElementAddress} from './main.js';
+  import {AREA} from 'element-address';
+
+  /**
+   * ElAreaDialog result to Label
+   * @return {string}
+   */
+  function AreasLabel(areas, defaultLabel = '') {
+    const ary = [];
+    for (const province of areas) {
+      if (AREA.province_list[province.code]) {
+        if (!province.children || !province.children.length) {
+          ary.push(AREA.province_list[province.code]);
+        } else {
+          for (const city of province.children) {
+            if (AREA.city_list[city.code]) {
+              ary.push(AREA.city_list[city.code]);
+            }
+          }
+        }
+      }
+    }
+    return ary.length ? ary.join('、') : defaultLabel;
+  }
 
   export default {
     name: 'app',
     components: {},
+    computed: {
+      areasLabel() {
+        return AreasLabel(this.areaValue, '没有选择');
+      },
+    },
     data() {
       return {
         size: 'small',
@@ -84,6 +115,7 @@
           },
         ],
         areaDisabled: false,
+        areaLevel: 2,
       };
     },
     methods: {
@@ -165,7 +197,7 @@
         });
       },
       areaDialog() {
-        this.$refs.area.open(this.areaValue).then(res => {
+        this.$refs.area.open(this.areaValue, {level: this.areaLevel}).then(res => {
           this.areaValue = res;
           // eslint-disable-next-line no-console
           console.log(res);
