@@ -19,13 +19,11 @@ export {
 };
 
 const ElementAddress = {
-  install(Vue, {useAll = false} = {}) {
+  install(Vue) {
     Vue.component(ElAreaCascader.name, ElAreaCascader);
     Vue.component(ElAddressForm.name, ElAddressForm);
-    if (useAll) {
-      Vue.component(ElAddressDialog.name, ElAddressDialog);
-      Vue.component(ElAreaDialog.name, ElAreaDialog);
-    }
+    Vue.component(ElAddressDialog.name, ElAddressDialog);
+    Vue.component(ElAreaDialog.name, ElAreaDialog);
   },
   $dialog: (data, options) => $dialog.open(data, options),
 };

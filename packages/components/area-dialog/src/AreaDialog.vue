@@ -11,6 +11,7 @@
       v-model="value"
       :key="district.code"
       :data="district"
+      :disabled="disabled"
     />
     <div slot="footer">
       <el-button :size="size" @click="visible = false">取 消</el-button>
@@ -34,6 +35,7 @@
         type: String,
         default: 'medium',
       },
+      disabled: Boolean,
     },
     data() {
       return {

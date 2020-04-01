@@ -14,7 +14,7 @@ import 'element-address/lib/index.css';
 
 Vue.use(ElementUI);
 
-Vue.use(ElementAddress, {useAll: true});
+Vue.use(ElementAddress);
 
 Vue.config.productionTip = false;
 

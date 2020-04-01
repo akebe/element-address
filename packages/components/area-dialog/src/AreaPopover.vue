@@ -3,13 +3,14 @@
     <el-popover
       placement="bottom"
       popper-class="el-area-popover"
-      width="230"
+      width="255"
       trigger="click">
       <el-checkbox
         v-for="item in data.children"
         :key="item.code"
         :label="item.code"
         :value="checkedChildren.some(v=> v.code === item.code)"
+        :disabled="disabled"
         @input="v => handleCheckChange(v,  item)"
       >
         {{ item.name }}
@@ -18,6 +19,7 @@
         <el-checkbox
           v-model="isChecked"
           :indeterminate="isIndeterminate"
+          :disabled="disabled"
           class="_checkbox"
           @click.stop
         >
@@ -44,6 +46,7 @@
         type: Array,
         default: () => [],
       },
+      disabled: Boolean,
     },
     computed: {
       isIndeterminate() {
@@ -116,6 +119,7 @@
 <style lang="less">
   .el-area-popover {
     padding-bottom: 5px;
+    box-sizing: border-box;
 
     .el-checkbox {
       margin-bottom: 10px;

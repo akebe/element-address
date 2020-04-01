@@ -4,6 +4,7 @@
       <el-checkbox
         v-model="isChecked"
         :indeterminate="isIndeterminate"
+        :disabled="disabled"
       >
         {{ data.name }}
       </el-checkbox>
@@ -14,6 +15,7 @@
         :key="item.code"
         :data="item"
         :value="value"
+        :disabled="disabled"
         @input="v => $emit('input', v)"
       />
     </div>
@@ -39,6 +41,7 @@
         type: Array,
         default: () => [], //[{code,children}] // children是空的意味着全选
       },
+      disabled: Boolean,
     },
     computed: {
       isIndeterminate() {

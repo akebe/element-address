@@ -36,9 +36,13 @@
     </div>
     <div class="_card">
       <el-button :size="size" @click="areaDialog">地区选择</el-button>
+      <el-checkbox v-model="areaDisabled" style="margin-left: 10px">禁用状态</el-checkbox>
     </div>
     <el-address-dialog ref="dialog"></el-address-dialog>
-    <el-area-dialog ref="area"/>
+    <el-area-dialog
+      ref="area"
+      :disabled="areaDisabled"
+    />
   </div>
 </template>
 
@@ -79,6 +83,7 @@
             ],
           },
         ],
+        areaDisabled: false,
       };
     },
     methods: {
