@@ -16,6 +16,7 @@
         :data="item"
         :value="value"
         :disabled="disabled"
+        :level="level"
         @input="v => $emit('input', v)"
       />
     </div>
@@ -42,6 +43,7 @@
         default: () => [], //[{code,children}] // children是空的意味着全选
       },
       disabled: Boolean,
+      level: Number,
     },
     computed: {
       isIndeterminate() {

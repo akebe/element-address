@@ -12,6 +12,7 @@
       :key="district.code"
       :data="district"
       :disabled="disabled"
+      :level="level"
     />
     <div slot="footer">
       <el-button :size="size" @click="visible = false">取 消</el-button>
@@ -42,15 +43,17 @@
         areas,
         visible: false,
         value: [],
+        level: 2,
       };
     },
     computed: {},
     methods: {
-      open(value = []) {
+      open(value = [], {level = 2} = {}) {
         return new Promise(resolve => {
           this.resolve = resolve;
           this.value = value;
           this.visible = true;
+          this.level = level;
         });
       },
       confirm() {

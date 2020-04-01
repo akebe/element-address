@@ -15,7 +15,7 @@
       >
         {{ item.name }}
       </el-checkbox>
-      <span slot="reference">
+      <span slot="reference" class="_reference">
         <el-checkbox
           v-model="isChecked"
           :indeterminate="isIndeterminate"
@@ -25,7 +25,7 @@
         >
           {{ label }}
         </el-checkbox>
-        <a slot="reference" class="el-icon-arrow-down el-icon--right"/>
+        <a v-if="level > 1" class="el-icon-arrow-down el-icon--right"/>
       </span>
     </el-popover>
   </div>
@@ -47,6 +47,7 @@
         default: () => [],
       },
       disabled: Boolean,
+      level: Number,
     },
     computed: {
       isIndeterminate() {
@@ -54,7 +55,7 @@
       },
       isChecked: {
         get() {
-          return this.checkedChildren.length && this.checkedChildren.length === this.data.children.length;
+          return this.checkedChildren.length && this.level < 2 || this.checkedChildren.length === this.data.children.length;
         },
         set(checked) {
           const value = this.value.filter(v => v.code !== this.data.code);
@@ -76,7 +77,7 @@
       },
       label() {
         let label = this.data.name;
-        const length = this.checkedChildren.length;
+        const length = this.level > 1 ? this.checkedChildren.length : 0;
         return `${label}${length ? '(' + length + ')' : ''}`;
       },
     },
@@ -113,11 +114,15 @@
 
     .el-icon-arrow-down {
       cursor: pointer;
-      margin-bottom: 15px;
 
       &:hover {
         color: #409eff;
       }
+    }
+
+    ._reference {
+      margin-bottom: 10px;
+      display: block;
     }
   }
 </style>
