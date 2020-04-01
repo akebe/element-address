@@ -11,6 +11,7 @@ npm install element-address --save
 ### 使用
 ````
 import ElementAddress from 'element-address';
+import 'element-address/lib/index.css';
 
 Vue.use(ElementAddress);
 ````
@@ -18,10 +19,11 @@ Vue.use(ElementAddress);
 `<el-dialog> <el-button> <el-form> <el-form-item> <el-row> <el-col> <el-input> <el-collapse> <el-collapse-item><el-radio-group> <el-radio> <el-cascader> `  
 如按需加载，请确保以上组件已注册
 
-#### 提供3个组件  
+#### 提供组件  
 `ElAreaCascader`   地址地区级联选择器  
 `ElAddressForm`    通用地址解析表单组件   
 `ElAddressDialog`  弹层地址解析表单组件 【建议直接使用ElementAddress.$dialog】  
+`ElAreaDialog`     地区选择器
 #### 一个方法
 `ElementAddress.$dialog` 弹出式地址解析编辑组件
 
@@ -99,5 +101,39 @@ Vue.use(ElementAddress);
 | bindData | 是否直接绑定表单对象 | Boolean | -- | false |
 ####tips
 可通过`ElementAddress.$dialog.$vm`访问到全局实例
+
+### ElAreaDialog  
+地区选择器 
+![ElAddressForm](https://raw.githubusercontent.com/akebe/element-address/master/src/img/ElAreaDialog.png)  
+```
+<el-area-dialog ref="area"/>
+```
+```
+areaDialog() {
+  this.$refs.area.open(this.areaValue).then(res => {
+    this.areaValue = res;
+  });
+},
+```
+参数及结果是一个数组
+```
+[
+  {
+    code: '320000',     // 选中的省份编码
+    children: [],       // children是空数组表示当前省份全部选中
+  },
+  {
+    code: '350000',     // 选中的省份编码
+    children: [         // children非空，值是选中的城市编码
+      {code: '350100'}, 
+    ],
+  },
+],
+```
+此组件需要引入样式文件
+```
+import 'element-address/lib/index.css';
+```
+
 ### LICENSE
 [MIT](https://en.wikipedia.org/wiki/MIT_License)

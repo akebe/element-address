@@ -15,9 +15,9 @@
         </div>
       </div>
       <el-address-form
-          :size="size"
-          :data="data"
-          ref="address"
+        :size="size"
+        :data="data"
+        ref="address"
       ></el-address-form>
     </div>
     <div class="_card">
@@ -34,7 +34,11 @@
       <el-button :size="size" @click="dialog1">弹出层1</el-button>
       <el-button :size="size" @click="dialog2">弹出层2</el-button>
     </div>
+    <div class="_card">
+      <el-button :size="size" @click="areaDialog">地区选择</el-button>
+    </div>
     <el-address-dialog ref="dialog"></el-address-dialog>
+    <el-area-dialog ref="area"/>
   </div>
 </template>
 
@@ -63,6 +67,18 @@
         testData1: {},
         testData2: {},
         bindData: true,
+        areaValue: [
+          {
+            code: '320000',     // 选中的省份编码
+            children: [],       // children是空数组表示当前省份全部选中
+          },
+          {
+            code: '350000',     // 选中的省份编码
+            children: [         // children非空，值是选中的城市编码
+              {code: '350100'},
+            ],
+          },
+        ],
       };
     },
     methods: {
@@ -141,6 +157,13 @@
             title: '结果2',
             dangerouslyUseHTMLString: true,
           });
+        });
+      },
+      areaDialog() {
+        this.$refs.area.open(this.areaValue).then(res => {
+          this.areaValue = res;
+          // eslint-disable-next-line no-console
+          console.log(res);
         });
       },
     },
