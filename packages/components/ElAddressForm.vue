@@ -13,6 +13,7 @@
           <el-input
             v-model="data.name"
             :placeholder="mPlaceholders.name"
+            @change="$emit('change', data, 'name')"
           />
         </el-form-item>
       </el-col>
@@ -23,6 +24,7 @@
           <el-input
             v-model.trim="data.mobile"
             :placeholder="mPlaceholders.mobile"
+            @change="$emit('change', data, 'mobile')"
           />
         </el-form-item>
       </el-col>
@@ -31,6 +33,7 @@
           <el-input
             v-model="data.phone"
             :placeholder="mPlaceholders.phone"
+            @change="$emit('change', data, 'phone')"
           />
         </el-form-item>
       </el-col>
@@ -41,6 +44,7 @@
           <el-input
             v-model="data.company"
             :placeholder="mPlaceholders.company"
+            @change="$emit('change', data, 'company')"
           />
         </el-form-item>
       </el-col>
@@ -49,6 +53,7 @@
           <el-input
             v-model="data.zip_code"
             :placeholder="mPlaceholders.zip_code"
+            @change="$emit('change', data, 'zip_code')"
           />
         </el-form-item>
       </el-col>
@@ -67,7 +72,7 @@
         v-model="data.details"
         type="textarea"
         :autosize="{ minRows: 1 }"
-        :placeholder="mPlaceholders.details"
+        @change="$emit('change', data, 'details')"
       />
     </el-form-item>
     <slot/>
@@ -294,14 +299,17 @@
         this.parse.actives = [];
         this.parse.results = [];
         this.parse.index = 0;
+        this.$emit('change', this.data, 'clear');
       },
       clearValidate(props) {
         this.$refs.form.clearValidate(props);
+
       },
       areaChange(code, [province, city, area]) {
         this.data.province = province ? province.label : '';
         this.data.city = city ? city.label : '';
         this.data.area = area ? area.label : '';
+        this.$emit('change', this.data, 'area');
       },
       addressParse() {
         this.parse.actives = [];
@@ -323,6 +331,7 @@
               });
             }
             this.$emit('parse', this.parse.results);
+            this.$emit('change', this.data);
           }, 100);
         });
       },
@@ -332,6 +341,7 @@
         KEYS.forEach(key => {
           this.data[key] = result[key];
         });
+        this.$emit('change', this.data);
       },
     },
   };
