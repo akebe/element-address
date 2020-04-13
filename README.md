@@ -103,7 +103,7 @@ Vue.use(ElementAddress);
 可通过`ElementAddress.$dialog.$vm`访问到全局实例
 
 ### ElAreaDialog  
-地区选择器 
+地区选择器  
 ![ElAddressForm](https://raw.githubusercontent.com/akebe/element-address/master/src/img/ElAreaDialog.png)  
 ```
 <el-area-dialog ref="area"/>

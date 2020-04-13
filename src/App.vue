@@ -18,6 +18,7 @@
         :size="size"
         :data="data"
         ref="address"
+        @change="addressChange"
       ></el-address-form>
     </div>
     <div class="_card">
@@ -119,6 +120,10 @@
       };
     },
     methods: {
+      addressChange(data, attr) {
+        // eslint-disable-next-line no-console
+        console.log('address-change', data, attr);
+      },
       save() {
         this.$refs.address.validate(valid => {
           if (valid) {
